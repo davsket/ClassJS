@@ -85,9 +85,9 @@ dalmatian instanceof Animal		//true
 ### Testing
 
 The tests are made with Jasmin, and you can check them at:
-[test/test.html](blob/gh-pages/test/test.html)
+[test/test.html](https://github.com/davsket/ClassJS/blob/gh-pages/test/test.html)
 And run them at:
-[davsket.github.com/Class/test/test.html](davsket.github.com/Class/test/test.html)
+[davsket.github.com/Class/test/test.html](http://davsket.github.com/Class/test/test.html)
 
 ## License
 
