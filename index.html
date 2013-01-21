@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Classjs by davsket</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Classjs</h1>
+        <p>A Class implementation for Javascript</p>
+
+        <p class="view"><a href="https://github.com/davsket/ClassJS">View the Project on GitHub <small>davsket/ClassJS</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/davsket/ClassJS/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/davsket/ClassJS/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/davsket/ClassJS">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Model-Schema</h1>
+
+<p>This is based in daClass <a href="https://github.com/jseros/daClass">https://github.com/jseros/daClass</a>
+Mixed with <a href="http://stackoverflow.com/questions/4152931/javascript-inheritance-call-super-constructor-or-use-prototype-chain">http://stackoverflow.com/questions/4152931/javascript-inheritance-call-super-constructor-or-use-prototype-chain</a></p>
+
+<p>Pros:
+    - you can define an initialization function
+    - the prototype chain is respected
+    - the new class will be instanceof base and older bases
+    - you can define the properties of the class
+    - has AMD version with RequireJS</p>
+
+<h2>Requirements</h2>
+
+<p>None, Class is agnostic</p>
+
+<h2>Usage</h2>
+
+<p>Import Class.js or use the RequireJS version at <code>src/requirejs/Class.js</code></p>
+
+<h3>Class creation</h3>
+
+<p>The base Class and the properties are optional</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">NewClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">([</span><span class="nx">BaseClass</span><span class="p">],</span> <span class="p">[</span><span class="nx">properties</span><span class="p">])</span>
+</pre></div>
+
+<p>So you can create your class as:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">()</span>
+</pre></div>
+
+<p>Also as</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span><span class="nx">isAnimal</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span>
+</pre></div>
+
+<p>And you can extend Classes</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Dog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">(</span>
+        <span class="nx">Animal</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s1">'Dog'</span><span class="p">,</span>
+            <span class="nx">isDog</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">bark</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+                <span class="k">return</span> <span class="s1">'Wuau!'</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+</pre></div>
+
+<p>And so on...</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Dalmatian</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">(</span>
+        <span class="nx">Dog</span><span class="p">,</span>
+        <span class="p">{</span>
+            <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+            <span class="p">},</span>
+            <span class="nx">bark</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_super_</span><span class="p">.</span><span class="nx">bark</span><span class="p">()</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">'!'</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+</pre></div>
+
+<p>As you can see, the instanced object form a Class can acces the property <code>_super_</code> to have access to the parent prototype chain.</p>
+
+<h3>Class usage</h3>
+
+<p>Once you have your Classes created, you can create new instances:</p>
+
+<div class="highlight"><pre><span class="nx">animal</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Animal</span><span class="p">()</span>
+<span class="nx">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">()</span>
+<span class="nx">dalmatian</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dalmatian</span><span class="p">(</span><span class="s1">'Paco'</span><span class="p">)</span>
+</pre></div>
+
+<h3>Class inheritance</h3>
+
+<p>The prototype an instantiation is respected, so you can use:</p>
+
+<div class="highlight"><pre><span class="nx">dalmatian</span> <span class="k">instanceof</span> <span class="nx">Dalmatian</span>  <span class="c1">//true</span>
+<span class="nx">dalmatian</span> <span class="k">instanceof</span> <span class="nx">Dog</span>        <span class="c1">//true</span>
+<span class="nx">dalmatian</span> <span class="k">instanceof</span> <span class="nx">Animal</span>     <span class="c1">//true</span>
+</pre></div>
+
+<h3>Testing</h3>
+
+<p>The tests are made with Jasmin, and you can check them at:
+<a href="https://github.com/davsket/ClassJS/blob/gh-pages/test/test.html">test/test.html</a>
+And run them at:
+<a href="http://davsket.github.com/Class/test/test.html">davsket.github.com/Class/test/test.html</a></p>
+
+<h2>License</h2>
+
+<p>MIT Licensed</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/davsket">davsket</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
