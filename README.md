@@ -8,6 +8,7 @@ Pros:
  	- the prototype chain is respected
  	- the new class will be instanceof base and older bases
  	- you can define the properties of the class
+ 	- has AMD version with RequireJS
 
 ## Requirements
 
@@ -15,7 +16,7 @@ None, Class is agnostic
 
 ## Usage
 
-Import Class.js
+Import Class.js or use the RequireJS version at `src/requirejs/Class.js`
 
 ### Class creation
 
