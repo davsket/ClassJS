@@ -1,4 +1,4 @@
-# Model-Schema
+# ClassJS
 
 This is based in daClass https://github.com/jseros/daClass
 Mixed with http://stackoverflow.com/questions/4152931/javascript-inheritance-call-super-constructor-or-use-prototype-chain
